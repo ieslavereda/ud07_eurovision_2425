@@ -90,14 +90,14 @@ public class Principal {
         System.out.println();
 
         //Obtener el pais con mayor numero de maximas puntuaciones (12 puntos) y los países que le han otorgado esos 12 puntos
-        int máximasVeces=0;
+        int maximasVeces=0;
         for (Pais pais:eurovision2024.getEurovision()){
-            if(pais.getVecesMaxPuntuacion()>máximasVeces)
-                máximasVeces=pais.getVecesMaxPuntuacion();
+            if(pais.getVecesMaxPuntuacion()>maximasVeces)
+                maximasVeces=pais.getVecesMaxPuntuacion();
         }
         for (Pais pais:eurovision2024.getEurovision()){
-            if(pais.getVecesMaxPuntuacion()==máximasVeces) {
-                System.out.print("País con más veces máxima puntuacion: " + pais.getNombre() + " veces: " + máximasVeces+ " votos de: ");
+            if(pais.getVecesMaxPuntuacion()==maximasVeces) {
+                System.out.print("País con más veces maxima puntuacion: " + pais.getNombre() + " veces: " + maximasVeces+ " votos de: ");
                 for (Pais pais12 : pais.getPaisesVotosMaximo()){
                     System.out.print(" -> "+pais12.getNombre());
                 }
