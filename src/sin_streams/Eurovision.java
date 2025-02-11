@@ -69,6 +69,21 @@ public class Eurovision {
 
     }
 
+    public Map<Pais,Set<Pais>> paisesConMaximasPuntuaciones(){
+        int maximasVeces=0;
+        Map<Pais,Set<Pais>> paisesMaxPun = new HashMap<>();
+        for (Pais pais:eurovision){
+            if(pais.getVecesMaxPuntuacion()>maximasVeces)
+                maximasVeces=pais.getVecesMaxPuntuacion();
+        }
+        for (Pais pais:eurovision){
+            if(pais.getVecesMaxPuntuacion()==maximasVeces) {
+                paisesMaxPun.put(pais,pais.getPaisesVotosMaximo());
+            }
+        }
+        return paisesMaxPun;
+    }
+
     @Override
     public String toString() {
         return "Eurovision --> \n" +

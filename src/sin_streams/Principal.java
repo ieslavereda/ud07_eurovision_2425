@@ -31,7 +31,7 @@ public class Principal {
         Pais francia = new Pais("Francia", "Slimane", "Mon Amour");
         Pais austria = new Pais("Austria", "Kaleen", "We Will Rave");
 
-        Eurovision eurovision2024 = new Eurovision(new ArrayList<>(List.of(suecia,ucrania,alemania,luxemburgo,paisesBajos,
+        Eurovision eurovision2024 = new Eurovision(new ArrayList<>(List.of(suecia, ucrania, alemania, luxemburgo, paisesBajos,
                 israel, lituania, espanya, estonia, irlanda, letonia, grecia, reinoUnido, noruega, italia, serbia,
                 finlandia, portugal, armenia, chipre, suiza, eslovenia, croacia, georgia, francia, austria)));
 
@@ -48,8 +48,8 @@ public class Principal {
 
         //Listado de los países ordenados por puntuaciones recibidas, junto con sus puntuaciones
         System.out.println("Listado de los paises ordenados por posición");
-        Map<Pais,Integer> puntuacionesTotales = eurovision2024.getPuntuacionTotal();
-        for(Pais pais:puntuacionesTotales.keySet()){
+        Map<Pais, Integer> puntuacionesTotales = eurovision2024.getPuntuacionTotal();
+        for (Pais pais : puntuacionesTotales.keySet()) {
             System.out.println(pais.getNombre() + "-" + puntuacionesTotales.get(pais));
         }
         System.out.println();
@@ -61,9 +61,9 @@ public class Principal {
             System.out.println("PAIS GANADOR EUROVISIÓN 2024: " + pais.getNombre() + "-" + pais.getPuntuacionTotal());
             //Quien le ha votado
             Map<Pais, Puntuacion> puntuacionGanador = pais.getPuntuacionesRecibidas();
-            System.out.println("Países que han votado a "+pais.getNombre()+ ":");
-            for(Pais pais1:puntuacionGanador.keySet()){
-                System.out.println("\t"+pais1.getNombre()+ " - Puntos: "+puntuacionGanador.get(pais1));
+            System.out.println("Países que han votado a " + pais.getNombre() + ":");
+            for (Pais pais1 : puntuacionGanador.keySet()) {
+                System.out.println("\t" + pais1.getNombre() + " - Puntos: " + puntuacionGanador.get(pais1));
             }
             System.out.println();
         }
@@ -71,7 +71,7 @@ public class Principal {
 
         //Listado de canciones ordenadas por nombre.
         List<String> canciones = new ArrayList<>();
-        for (Pais pais:eurovision2024.getEurovision()){
+        for (Pais pais : eurovision2024.getEurovision()) {
             canciones.add(pais.getCancion());
         }
         Collections.sort(canciones);
@@ -81,7 +81,7 @@ public class Principal {
 
         //Listado de cantantes ordenados por nombre
         List<String> participantes = new ArrayList<>();
-        for (Pais pais:eurovision2024.getEurovision()){
+        for (Pais pais : eurovision2024.getEurovision()) {
             participantes.add(pais.getParticipante());
         }
         System.out.println("Listado de participantes ordenados por nombre");
@@ -90,21 +90,13 @@ public class Principal {
         System.out.println();
 
         //Obtener el pais con mayor numero de maximas puntuaciones (12 puntos) y los países que le han otorgado esos 12 puntos
-        int maximasVeces=0;
-        for (Pais pais:eurovision2024.getEurovision()){
-            if(pais.getVecesMaxPuntuacion()>maximasVeces)
-                maximasVeces=pais.getVecesMaxPuntuacion();
-        }
-        for (Pais pais:eurovision2024.getEurovision()){
-            if(pais.getVecesMaxPuntuacion()==maximasVeces) {
-                System.out.print("País con más veces maxima puntuacion: " + pais.getNombre() + " veces: " + maximasVeces+ " votos de: ");
-                for (Pais pais12 : pais.getPaisesVotosMaximo()){
-                    System.out.print(" -> "+pais12.getNombre());
-                }
-                System.out.println();
+        for (Pais pais : eurovision2024.paisesConMaximasPuntuaciones().keySet()) {
+            System.out.print("País con más veces maxima puntuacion: " + pais.getNombre() + " veces: " + eurovision2024.paisesConMaximasPuntuaciones().get(pais).size() + " votos de: ");
+            for (Pais pais12 : eurovision2024.paisesConMaximasPuntuaciones().get(pais)) {
+                System.out.print(" -> " + pais12.getNombre());
             }
+            System.out.println();
         }
-
 
     }
 }

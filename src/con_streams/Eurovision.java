@@ -54,6 +54,11 @@ public class Eurovision {
                         forEach(pais -> puntuacionTotal.put(pais, puntuacion)));
     }
 
+    public Set<Pais> paisesConMaximasPuntuaciones(){
+        int maximasVeces = eurovision.stream().mapToInt(Pais::getVecesMaxPuntuacion).max().orElse(0);
+        return eurovision.stream().filter(pais1 -> pais1.getVecesMaxPuntuacion()==maximasVeces).collect(Collectors.toSet());
+    }
+
     @Override
     public String toString() {
         return "Eurovision --> \n" +
